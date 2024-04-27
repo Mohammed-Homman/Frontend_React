@@ -20,48 +20,44 @@ function Home() {
       <div className="features">
         <div className="container">
           <div className="item">
-            <h1>A whole world of freelance talent at your fingertips</h1>
+            <h1>Avec Manzo, acheter n'a jamais été plus facile</h1>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              The best for every budget
+              Le meilleur pour chaque budget
             </div>
             <p>
-              Find high-quality services at every price point. No hourly rates,
-              just project-based pricing.
+            Trouvez des services et des produits de haute qualité à chaque niveau de prix.
             </p>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              Quality work done quickly
+              Travail de qualité réalisé rapidement.
             </div>
             <p>
-              Find the right freelancer to begin working on your project within
-              minutes.
+              Des foirnisseurs fiables et soucieux de la satisfaction du client.
             </p>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              Protected payments, every time
+              Paiement sécurisé et ultra sécurisé.
             </div>
             <p>
-              Always know what you'll pay upfront. Your payment isn't released
-              until you approve the work.
+            Toujours connaître le coût total à l'avance. Votre paiement n'est débloqué que lorsque vous avez validé le travail.
             </p>
             <div className="title">
               <img src="./img/check.png" alt="" />
-              24/7 support
+              Assistance disponible 24h/24, 7j/7
             </div>
             <p>
-              Find high-quality services at every price point. No hourly rates,
-              just project-based pricing.
+            Notre équipe dévouée est là pour vous offrir un soutien continu et résoudre vos questions, assurant ainsi une expérience sans souci.
             </p>
           </div>
           <div className="item">
-            <video src="./img/video.mp4" controls />
+          <video src="./img/ad.mp4" autoPlay muted style={{ borderRadius: '10px' }} />
           </div>
         </div>
       </div>
       <div className="explore">
         <div className="container">
-          <h1>Explore the marketplace</h1>
+          <h1>Explore The Services of Manzo</h1>
           <div className="items">
             <div className="item">
               <img
@@ -147,43 +143,12 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="features dark">
-        <div className="container">
-          <div className="item">
-            <h1>
-              liverr <i>business</i>
-            </h1>
-            <h1>
-              A business solution designed for <i>teams</i>
-            </h1>
-            <p>
-              Upgrade to a curated experience packed with tools and benefits,
-              dedicated to businesses
-            </p>
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Connect to freelancers with proven business experience
-            </div>
+      
 
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Get matched with the perfect talent by a customer success manager
-            </div>
 
-            <div className="title">
-              <img src="./img/check.png" alt="" />
-              Manage teamwork and boost productivity with one powerful workspace
-            </div>
-            <button>Explore Liverr Business</button>
-          </div>
-          <div className="item">
-            <img
-              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_2.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624768/business-desktop-870-x2.png"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+
+
+
       <Slide slidesToShow={4} arrowsScroll={4}>
         {projects.map((card) => (
           <ProjectCard key={card.id} card={card} />

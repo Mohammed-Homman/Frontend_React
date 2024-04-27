@@ -2,7 +2,10 @@
   height: 600px;
   display: flex;
   justify-content: center;
-  background-color: #013914;
+  //background-color: #013914;
+  background-color: #ED92D6;
+  background: linear-gradient(to right,#ED92D6 0%,#423C6C 50%,#082427 100%);
+
   color: white;
 
   .container {
@@ -25,8 +28,8 @@
       }
 
       .search {
-        background-color: white;
-        border-radius: 5px;
+        background-color: transparent;
+        
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -45,9 +48,14 @@
           input {
             border: none;
             outline: none;
+            background: transparent;
+            width: 300px;
+            border-bottom: 1px solid rgb(216, 214, 214);
+            color: white;
+            font-size: 20px;
 
             &::placeholder {
-              color: gray;
+              color: rgb(221, 221, 221);
             }
           }
         }
@@ -56,8 +64,9 @@
           width: 120px;
           height: 50px;
           border: none;
-          background-color: #1dbf73;
-          color: white;
+          background-color: white;
+          color: black;
+          border-radius: 20px;
           align-self: flex-end;
           cursor: pointer;
         }

@@ -6,21 +6,39 @@ import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
 import Gigs from "./pages/gigs/Gigs";
 import Gig from "./pages/gig/Gig";
+import Payment from "./payment/Payment";
+import ShowCourseComponent from "./components/showcoursecomponent/ShowCourseComponent";
+import UserCartComponent from "./components/usercartcomponent/UserCartComponent";
+import SearchComponent from "./components/searchcomponent/SearchComponent";
 import Login from "./pages/login/Login";
+import Explore from "./pages/explore/Explore";
+import Order from "./pages/Order/order";
 import Register from "./pages/register/Register";
 import Add from "./pages/add/Add";
-import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
 import MyGigs from "./pages/myGigs/MyGigs";
 
+
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query';
+
 function App() {
+
+  const queryClient = new QueryClient()
+
   const Layout = () => {
     return (
       <div className="app">
+        <QueryClientProvider client={queryClient}>
         <Navbar />
         <Outlet />
         <Footer />
+        </QueryClientProvider>
+
       </div>
     );
   };
@@ -38,18 +56,30 @@ function App() {
           path: "/gigs",
           element: <Gigs />,
         },
+      
         {
           path: "/myGigs",
           element: <MyGigs />,
         },
         {
-          path: "/orders",
-          element: <Orders />,
+          path:"/explore",
+          element:<Explore/>,
         },
+      
         {
           path: "/messages",
           element: <Messages />,
         },
+        {
+          path:"/order",
+          element:<Order/>,
+        }
+        ,
+        {
+          path:"/payment",
+          element:<Payment/>,
+        }
+        ,
         {
           path: "/message/:id",
           element: <Message />,

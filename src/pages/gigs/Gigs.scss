@@ -2,6 +2,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  // background-color: #ED92D6;
+  // background: linear-gradient(to right,#ED92D6 0%,#423C6C 50%,#082427 100%);
+  background-color: white;
 
   .container {
     width: 1400px;
@@ -14,14 +17,14 @@
       font-weight: 300;
       text-transform: uppercase;
       font-size: 13px;
-      color: #555;
+      color: black;
     }
 
     h1 {
     }
 
     p {
-      color: #999;
+      color: black;
       font-weight: 300;
     }
 
@@ -35,7 +38,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        color: #555;
+        color: black;
         font-weight: 300;
 
         input{
@@ -51,11 +54,11 @@
 
         button{
           padding: 5px 10px;
-          background-color: #1dbf73;
+          background-color: black;
           color: white;
           border: none;
           font-weight: 500;
-          border-radius: 5px;
+          border-radius: 15px;
           cursor: pointer;
         }
 
@@ -68,7 +71,7 @@
         gap: 10px;
 
         .sortBy {
-          color: #555;
+          color: black;
           font-weight: 300;
         }
 
@@ -93,7 +96,7 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
-          color: #555;
+          color: white;
 
           span {
             cursor: pointer;
@@ -104,7 +107,7 @@
 
     .cards {
       display: flex;
-      justify-content: space-between;
+      gap: 30px;
       flex-wrap: wrap;
     }
   }

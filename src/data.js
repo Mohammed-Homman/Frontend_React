@@ -1,9 +1,9 @@
 export const cards = [
   {
     id: 1,
-    title: "AI Artists",
-    desc: "Add talent to AI",
-    img: "https://images.pexels.com/photos/7532110/pexels-photo-7532110.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    title: "Book Shop",
+    desc: "Read between the lines",
+    img: "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     id: 2,
@@ -25,9 +25,9 @@ export const cards = [
   },
   {
     id: 5,
-    title: "Video Explainer",
-    desc: "Engage your audience",
-    img: "https://images.pexels.com/photos/13388047/pexels-photo-13388047.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    title: "Electronique",
+    desc: "get what you need from the tech store",
+    img: "https://images.pexels.com/photos/3345882/pexels-photo-3345882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     id: 6,

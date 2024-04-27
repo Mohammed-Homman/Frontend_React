@@ -1,125 +1,89 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MyGigs.scss";
+import getCurrentUser from "../../utils/getCurrentUser";
+import newResquest from "../../utils/newRequest";
 
 function MyGigs() {
-  const currentUser = {
-    id: 1,
-    username: "Anna",
-    isSeller: true,
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    
+    const fetchProducts = async () => {
+      try {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const response = await newResquest.get(`api/Product/myProducts?userId=${currentUser?.userId}`);
+        console.log(currentUser?.userId);
+        setProducts(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array to run the effect only once on mount
+
+  const handleDelete = async (productId) => {
+    try {
+      await newResquest.delete(`api/Product/${productId}`);
+      console.log("Successfully deleted");
+      setProducts((prevProducts) => prevProducts.filter((product) => product.productId !== productId));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
+
+  
 
   return (
     <div className="myGigs">
-      <div className="container">
-        <div className="title">
-          <h1>{currentUser.isSeller ? "Gigs" : "Orders"}</h1>
-          {currentUser.isSeller && (
-            <Link to="/add">
-              <button>Add New Gig</button>
-            </Link>
-          )}
+      {isLoading ? (
+        "loading"
+      ) : error ? (
+        "error"
+      ) : (
+        <div className="container">
+          <div className="title">
+            <h1>Mes articles</h1>
+            {/* Add your add product link here */}
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>deliveryTime</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.productId}>
+                  <td>
+                    <img className="image" src={product.cover} alt="" />
+                  </td>
+                  <td>{product.title}</td>
+                  <td>{product.price}</td>
+                  <td>{product.deliveryTime}</td>
+                  <td>
+                    <img
+                      className="delete"
+                      src="./img/delete.png"
+                      alt=""
+                      onClick={() => handleDelete(product.productId)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <table>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Sales</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Stunning concept art</td>
-            <td>59.<sup>99</sup></td>
-            <td>13</td>
-            <td>
-              <img className="delete" src="./img/delete.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Ai generated concept art</td>
-            <td>120.<sup>99</sup></td>
-            <td>41</td>
-            <td>
-              <img className="delete" src="./img/delete.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>High quality digital character</td>
-            <td>79.<sup>99</sup></td>
-            <td>55</td>
-            <td>
-              <img className="delete" src="./img/delete.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Illustration hyper realistic painting</td>
-            <td>119.<sup>99</sup></td>
-            <td>29</td>
-            <td>
-              <img className="delete" src="./img/delete.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Original ai generated digital art</td>
-            <td>59.<sup>99</sup></td>
-            <td>34</td>
-            <td>
-              <img className="delete" src="./img/delete.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Text based ai generated art</td>
-            <td>110.<sup>99</sup></td>
-            <td>16</td>
-            <td>
-              <img className="delete" src="./img/delete.png" alt="" />
-            </td>
-          </tr>
-        </table>
-      </div>
+      )}
     </div>
   );
 }

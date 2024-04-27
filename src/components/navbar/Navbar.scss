@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #013914;
+  background-color: #ED92D6;
+  background: linear-gradient(to right,#ED92D6 0%,#423C6C 50%,#082427 100%);
   color: white;
   position: sticky;
   top: 0;
@@ -10,13 +11,14 @@
   transition: 0.5s all ease;
 
   &.active {
+    background: white;
     background-color: white;
     color: black;
 
     button {
       background-color: white !important;
-      color: #1dbf73 !important;
-      border: 1px solid #1dbf73 !important;
+      color: #423C6C !important;
+      border: 1px solid #423C6C !important;
     }
   }
 
@@ -36,7 +38,7 @@
 
       .dot {
         font-weight: bold;
-        color: #1dbf73;
+        color: black;
       }
     }
     .links {
@@ -45,23 +47,30 @@
       gap: 24px;
       font-family: "Montserrat", sans-serif;
       font-weight: 500;
+      .link #explore{
+        color: #ED92D6;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 22px;
+        
 
+      }
+    
       span {
         white-space: nowrap;
       }
-
       .user {
         display: flex;
         align-items: center;
         gap: 10px;
         cursor: pointer;
         position: relative;
-
+        
         img {
-          width: 32px;
-          height: 32px;
+          width: 35px;
+          height: 35px;
           border-radius: 50%;
           object-fit: cover;
+          z-index: 100;
         }
 
         .options {
@@ -71,13 +80,14 @@
           padding: 20px;
           background-color: white;
           border-radius: 10px;
+          border-color: #423C6C;
           z-index: 999;
           border: 1px solid lightgrey;
           display: flex;
           flex-direction: column;
           gap: 10px;
           width: 200px;
-          font-weight: 300;
+          font-weight: 500;
           color: gray;
         }
       }
@@ -91,8 +101,8 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #1dbf73;
-          border-color: #1dbf73;
+          background-color: #423C6C;
+          border-color: #423C6C;
         }
       }
     }

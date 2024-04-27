@@ -1,7 +1,7 @@
 .myGigs {
   display: flex;
   justify-content: center;
-  color: #555;
+  color:black;
 
   .container {
     width: 1400px;
@@ -36,8 +36,8 @@
           }
           
           .image {
-            width: 50px;
-            height: 25px;
+            width: 150px;
+            height: 155px;
             object-fit: cover;
           }
 

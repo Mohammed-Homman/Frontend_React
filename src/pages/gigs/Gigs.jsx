@@ -1,61 +1,62 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
-import { gigs } from "../../data";
 import GigCard from "../../components/gigCard/GigCard";
+import newRequest from "../../utils/newRequest";
+import { useLocation } from "react-router-dom";
 
 function Gigs() {
-  const [sort, setSort] = useState("sales");
-  const [open, setOpen] = useState(false);
-  const minRef = useRef();
-  const maxRef = useRef();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
+  const minRef = useRef(0); // Default value is set to 0, adjust as needed
+  const maxRef = useRef(1000); // Default value is set to 1000, adjust as needed
+  const searchRef = useRef();
 
-  const reSort = (type) => {
-    setSort(type);
-    setOpen(false);
+  const { search } = useLocation();
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+
+      const response = await newRequest.get(`api/Product/AllProducts/${search}&min=${minRef.current}&max=${maxRef.current}`);
+      setData(response.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const apply = ()=>{
-    console.log(minRef.current.value)
-    console.log(maxRef.current.value)
-  }
+  useEffect(() => {
+    fetchData();
+  }, [search]);
+
+  const applyFilters = () => {
+    fetchData();
+  };
 
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">Liverr > Graphics & Design ></span>
+        <span className="breadcrumbs">Manzo / Graphics & Design /</span>
         <h1>AI Artists</h1>
         <p>
-          Explore the boundaries of art and technology with Liverr's AI artists
+          Explorez les articles mises à votre entière disposition !
         </p>
         <div className="menu">
           <div className="left">
             <span>Budget</span>
             <input ref={minRef} type="number" placeholder="min" />
             <input ref={maxRef} type="number" placeholder="max" />
-            <button onClick={apply}>Apply</button>
-          </div>
-          <div className="right">
-            <span className="sortBy">Sort by</span>
-            <span className="sortType">
-              {sort === "sales" ? "Best Selling" : "Newest"}
-            </span>
-            <img src="./img/down.png" alt="" onClick={() => setOpen(!open)} />
-            {open && (
-              <div className="rightMenu">
-                {sort === "sales" ? (
-                  <span onClick={() => reSort("createdAt")}>Newest</span>
-                ) : (
-                  <span onClick={() => reSort("sales")}>Best Selling</span>
-                  )}
-                  <span onClick={() => reSort("sales")}>Popular</span>
-              </div>
-            )}
+            <button onClick={applyFilters}>Apply</button>
           </div>
         </div>
         <div className="cards">
-          {gigs.map((gig) => (
-            <GigCard key={gig.id} item={gig} />
-          ))}
+          {isLoading
+            ? "Loading..."
+            : error
+            ? "Something went wrong!"
+            : data.map((gig) => <GigCard key={gig.productId} item={gig} />)}
         </div>
       </div>
     </div>
